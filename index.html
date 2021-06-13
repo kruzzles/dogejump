@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://use.typekit.net/njo2arg.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title> Doge jump </title>
+</head>
+<body style="background-color: rgba(212, 185, 159, 0.301)">
+    <h1> Enjoy "doge jump" inspired by the google dinosaur game </h1>
+    <br>
+    <h2> (click to jump)</h2>
+    <br><br><br><br><br><br>
+    <div id="scoretxt">
+    <p>Score: <span id="scoreSpan"></span></p>
+</div>
+    <div id="wholegame" onclick="jump()">
+        <div id="doge"></div>
+        <div id="elon"></div>
+    </div>
+    <script>
+        var doge = document.getElementById("doge");
+        var elon = document.getElementById("elon")
+        var counter=0;
+
+        function jump() {
+
+             doge.classList.add("animate");
+
+             setTimeout(function(){
+                 doge.classList.remove("animate");
+             },500);
+        }
+
+        var lost = setInterval(function(){
+            var dogetop = parseInt (window.getComputedStyle(doge).getPropertyValue("top"));
+            var elonleft = parseInt (window.getComputedStyle(elon).getPropertyValue("left"));
+            if(elonleft <40 && elonleft>-40 && dogetop>=446){
+                elon.style.animation = "none";
+                elon.style.display = "none";
+                alert("Game over. Score: " + Math.floor(counter/100));
+                counter=0;
+                location.reload();
+            }else{
+                counter++;
+                document.getElementById("scoreSpan").innerHTML = Math.floor(counter/100);
+            }
+        },10);
+            
+    </script>
+    <br><br>
+    <p style="text-align: center;"><a href="#"> Source Code </a></p>
+</body>
+</html>  
